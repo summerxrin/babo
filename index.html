@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>바보의나눔</title>
+    <link rel="stylesheet" href="css/sytle2.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+
+    <!--menu all-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            mobile_menu();
+        });
+
+        function mobile_menu() {
+            /* 변수 선언 */
+            var $menu = null;
+            var $left_gnb = null; // 영역 전체
+            var $depth1_wrap = null;
+            var $depth1 = null;
+            var $depth1_btn = null;
+
+            /* 시작 함수 */
+            function start() {
+                init();
+                init_event();
+            }
+            /* 변수 초기화 함수 */
+            function init() {
+                $menu = $('.menu');
+                $left_gnb = $('.left_gnbWrap'); // 영역 전체
+                $depth1_wrap = $('.left_gnb>li');
+                $depth1 = $depth1_wrap.children('ul');
+                $depth1_btn = $depth1_wrap.children('a');
+            }
+            /* 이벤트 함수 */
+            function init_event() {
+
+                /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+                $menu.click(function(event) {
+                    event.preventDefault();
+                    $left_gnb.addClass('on');
+                });
+
+                /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+                $('.close').click(function(event) {
+                    event.preventDefault();
+
+                    $left_gnb.removeClass('on');
+
+                    // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+                    setTimeout(function() {
+                        $depth1_btn.removeClass('on');
+                        $depth1.slideUp();
+                    }, 300)
+                });
+
+                /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+                $depth1_btn.click(function(event) {
+                    event.preventDefault();
+                    var $this = $(this);
+                    var $this_ul = $this.siblings('ul');
+
+                    var check = $this.hasClass('on');
+                    if (check) {
+                        $this.removeClass('on');
+                        $this_ul.stop(true, true).slideUp();
+                    } else {
+                        $depth1_btn.removeClass('on');
+                        $depth1.stop().slideUp();
+                        $this.addClass('on');
+                        $this_ul.stop(true, true).slideDown();
+                    }
+                });
+
+                /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+                $(window).resize(function() {
+                    $left_gnb.removeClass('on');
+                });
+            }
+
+            start(); // 시작 호출
+        }
+    </script>
+
+    <!--mainimg-->
+    <link rel="stylesheet" href="css/flickerplate.css">
+    <script src="js/jquery-v1.10.2.min.js" type="text/javascript"></script>
+    <script src="js/jquery-finger-v0.1.0.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('.flicker-example').flicker();
+        });
+    </script>
+
+    <!--box1 slider-->
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+            <div class="gnb web">
+                <div class="inner">
+                    <ul>
+                        <li><a href="#">로그인</a></li>
+                        <li class="line"><a href="#">회원가입</a></li>
+                        <li class="line"><a href="#">회사소개</a></li>
+                        <li class="line"><a href="#">ENGLISH</a></li>
+                        <li><a href="http://www.instagram.com" target="_blank"><img src="img/instagram.png" alt=""></a></li>
+                        <li><a href="http://www.facebook.com" target="_blank"><img src="img/facebook.png" alt="facebook"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header">
+                <div class="inner">
+                    <div class="logo"><a href="index.html"><img src="img/logo.png" alt="logo"></a></div>
+                    <ul class="header_r">
+                        <li class="donation web">
+                            <a href="#"><img src="img/heart.png" alt="heart"> 나의기부</a>
+                        </li>
+                        <li class="search"><img src="img/search.png" alt="search"></li>
+                        <li class="menu"><img src="img/menu.png" alt="menu"></li>
+                        <li>
+                            <nav class="left_gnbWrap">
+                                <a href="#" class="close"><img src="img/close.png" alt="close"></a>
+                                <ul class="left_gnb">
+                                    <li>
+                                        <a href="#">지원활동</a>
+                                        <ul>
+                                            <li><a href="#">지원공지</a></li>
+                                            <li><a href="#">지원분야</a></li>
+                                            <li><a href="#">공모배분사업</a></li>
+                                            <li><a href="#">지정기탁사업</a></li>
+                                            <li><a href="#">여성가장 긴급지원사업</a></li>
+                                            <li><a href="#">자료실</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">기부하기</a>
+                                        <ul>
+                                            <li><a href="#">기부안내</a></li>
+                                            <li><a href="#">캠페인기부</a></li>
+                                            <li><a href="#">바보나눔터</a></li>
+                                            <li><a href="#">기업기부</a></li>
+                                            <li><a href="#">바보파밀리아</a></li>
+                                            <li><a href="#">스토어</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">이야기</a>
+                                        <ul>
+                                            <li><a href="#">새소식</a></li>
+                                            <li><a href="#">바보뉴스</a></li>
+                                            <li><a href="#">기부이야기</a></li>
+                                            <li><a href="#">변화이야기</a></li>
+                                            <li><a href="#">자주 묻는 질문</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">바보의나눔</a>
+                                        <ul>
+                                            <li><a href="#">재단소개</a></li>
+                                            <li><a href="#">법정기부금단체</a></li>
+                                            <li><a href="#">투명한 바보</a></li>
+                                            <li><a href="#">함께하는 사람들</a></li>
+                                            <li><a href="#">오시는 길</a></li>
+                                            <li><a href="#">김수환 추기경 사진전</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </li>
+                    </ul>
+
+                    <ul class="header_l">
+                        <li><a href="#">지원활동</a></li>
+                        <li><a href="sub.html">기부하기</a></li>
+                        <li><a href="#">이야기</a></li>
+                        <li><a href="#">바보의나눔</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div id="mainimg">
+            <div class="flicker-example" data-block-text="false">
+                <ul>
+                    <li>
+                    </li>
+
+                    <li>
+                    </li>
+                </ul>
+            </div>
+            <!--<div class="inner">
+                <div class="maintext"><img src="img/m_text.png" alt=""></div>
+                <div class="yellowbox">
+                    <ul>
+                        <li>
+                            <span>01</span>
+                            <dl>
+                                <dt>법정기부금단체</dt>
+                                <dd>바보의 나눔은 국내 유일 민간<br>법정기부금단체입니다.</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <span>02</span>
+                            <dl>
+                                <dt>투명한 바보</dt>
+                                <dd>바보의 나눔은 법정기부금단체<br>(전문모금기관)의 법정 요건을<br>준수하고 있으며, 매년 외부<br>회계감사를 받고 있습니다.</dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>-->
+        </div>
+        <div id="contents">
+            <div class="box1">
+                <div class="inner">
+                    <div class="line">
+                        <h2><span>바보의 나눔 둘러보기</span></h2>
+                    </div>
+                    <section class="regular slider">
+                        <div class="yborder">
+                            <span>바보나눔터</span>
+                            <i><img src="img/donation1.png" alt="바보나눔터"></i>
+                            <p>바보나눔터는 식당, 병원, 학원 등<br>중소 규모의 업체가 바보의 나눔을<br>통해 기부를 실천하느나 곳입니다.</p>
+                            <a href="#"><i class="plus"></i></a>
+                        </div>
+                        <div class="yborder">
+                            <span>바보파밀리아</span>
+                            <i><img src="img/family.png" alt="바보파밀리아"></i>
+                            <p>바보의나눔과 함께 따뜻한<br>세상을 만들어가는 특별한 가족<br>‘바보파밀리아’를 소개합니다.</p>
+                            <a href="#"><i class="plus"></i></a>
+                        </div>
+                        <div class="yborder">
+                            <span>김수환 추기경 사진전</span>
+                            <i><img src="img/image-gallery.png" alt="김수환추기경사진전"></i>
+                            <p>소외된 이웃의 친구<br>김수환 추기경님을<br>온라인에서 만나 보세요.</p>
+                            <a href="#"><i class="plus"></i></a>
+                        </div>
+                        <div class="yborder">
+                            <span>바보나눔터</span>
+                            <i><img src="img/donation1.png" alt="바보나눔터"></i>
+                            <p>바보나눔터는 식당, 병원, 학원 등<br>중소 규모의 업체가 바보의 나눔을<br>통해 기부를 실천하느나 곳입니다.</p>
+                            <a href="#"><i class="plus"></i></a>
+                        </div>
+                        <div class="yborder">
+                            <span>바보파밀리아</span>
+                            <i><img src="img/family.png" alt="바보파밀리아"></i>
+                            <p>바보의나눔과 함께 따뜻한<br>세상을 만들어가는 특별한 가족<br>‘바보파밀리아’를 소개합니다.</p>
+                            <a href="#"><i class="plus"></i></a>
+                        </div>
+                        <div class="yborder">
+                            <span>김수환 추기경 사진전</span>
+                            <i><img src="img/image-gallery.png" alt="김수환추기경사진전"></i>
+                            <p>소외된 이웃의 친구<br>김수환 추기경님을<br>온라인에서 만나 보세요.</p>
+                            <a href="#"><i class="plus"></i></a>
+                        </div>
+                    </section>
+                    <!--<div class="yborder">
+                        <ul>
+                            <li>
+                                <div>
+                                    <span>바보나눔터</span>
+                                    <i><img src="img/donation1.png" alt="바보나눔터"></i>
+                                    <p>바보나눔터는 식당, 병원, 학원 등<br>중소 규모의 업체가 바보의 나눔을<br>통해 기부를 실천하느나 곳입니다.</p>
+                                    <a href="#"><i class="plus"></i></a>
+                                </div>
+                                <div class="m_prev mob"><img src="img/prev.png" alt="prev"></div>
+                                <div class="m_next mob"><img src="img/next.png" alt="next"></div>
+                            </li>
+                            <li class="web">
+                                <div>
+                                    <span>바보파밀리아</span>
+                                    <i><img src="img/family.png" alt="바보파밀리아"></i>
+                                    <p>바보의나눔과 함께 따뜻한<br>세상을 만들어가는 특별한 가족<br>‘바보파밀리아’를 소개합니다.</p>
+                                    <a href="#"><i class="plus"></i></a>
+                                </div>
+                            </li>
+                            <li class="web">
+                                <div>
+                                    <span>김수환 추기경 사진전</span>
+                                    <i><img src="img/image-gallery.png" alt="김수환추기경사진전"></i>
+                                    <p>소외된 이웃의 친구<br>김수환 추기경님을<br>온라인에서 만나 보세요.</p>
+                                    <a href="#"><i class="plus"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>-->
+                    <div class="ybox">
+                        <ul>
+                            <li>
+                                <div>
+                                    <i class="yboximg"><img src="img/sprout.png" alt="바로 기부하기"></i>
+                                    <p>바보의 나눔에 정기기부를<br class="web">바로 시작해보세요.<br class="mob"><br class="mob"></p>
+                                    <div>바로 기부하기<img src="img/play.png" alt="play"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <i class="yboximg"><img src="img/surprise.png" alt="똑똑!안부마켓"></i>
+                                    <p>독거 어르신께 전하고 싶은 물품을<br class="web">직접 고르는<br class="mob">신개념 기부마켓</p>
+                                    <div>똑똑!안부마켓<img src="img/play.png" alt="play"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--box1-->
+            <div class="box2">
+                <div class="inner">
+                    <h1 class="web">꿈담은별</h1>
+                    <p class="web">반짝이는 아이들의<br>꿈을 응원해주세요</p>
+                    <div class="mob"><img src="img/m_star2.png" alt=""></div>
+                </div>
+            </div>
+            <!--box2-->
+            <div class="box3">
+                <div class="inner">
+                    <h1><span>바보의나눔은 도움이 필요한 이웃과 함께합니다</span></h1>
+                    <section class="center slider2">
+                        <div>
+                            <i class="icon2"><img src="img/distributed.png" alt="공모배분사업"></i>
+                            <a href="#"><i class="plus"></i></a>
+                            <h6>공모배분사업</h6>
+                            <p class="web">종교, 이념, 인종, 지역 등에 차별 없이 국내/외 현장에서 가장 도움이 필요한 곳을 지원하기 위해 공모배분 사업을 통해 기부금을 배분합니다.</p>
+                        </div>
+                        <div>
+                            <i class="icon2"><img src="img/human-resources.png" alt="지정기탁사업"></i>
+                            <a href="#"><i class="plus"></i></a>
+                            <h6>지정기탁사업</h6>
+                            <p class="web">기업 또는 개인은 기부금 (현물 포함) 사용처를 지정하여 기탁할 수 있고 바보의나눔은 사업의 기획, 관리 및 평가를 담당합니다.</p>
+                        </div>
+                        <div>
+                            <i class="icon2"><img src="img/woman.png" alt="여성가장 지원사업"></i>
+                            <a href="#"><i class="plus"></i></a>
+                            <h6>여성가장 <br class="mob">지원사업</h6>
+                            <p class="web">사각지대의 여성가장들을 돕기 위해 ‘여성가장 긴급지원사업’을 진행하고 있습니다.</p>
+                        </div>
+                        <div>
+                            <i class="icon2"><img src="img/distributed.png" alt="공모배분사업"></i>
+                            <a href="#"><i class="plus"></i></a>
+                            <h6>공모배분사업</h6>
+                            <p class="web">종교, 이념, 인종, 지역 등에 차별 없이 국내/외 현장에서 가장 도움이 필요한 곳을 지원하기 위해 공모배분 사업을 통해 기부금을 배분합니다.</p>
+                        </div>
+                        <div>
+                            <i class="icon2"><img src="img/human-resources.png" alt="지정기탁사업"></i>
+                            <a href="#"><i class="plus"></i></a>
+                            <h6>지정기탁사업</h6>
+                            <p class="web">기업 또는 개인은 기부금 (현물 포함) 사용처를 지정하여 기탁할 수 있고 바보의나눔은 사업의 기획, 관리 및 평가를 담당합니다.</p>
+                        </div>
+                        <div>
+                            <i class="icon2"><img src="img/woman.png" alt="여성가장 지원사업"></i>
+                            <a href="#"><i class="plus"></i></a>
+                            <h6>여성가장 <br class="mob">지원사업</h6>
+                            <p class="web">사각지대의 여성가장들을 돕기 위해 ‘여성가장 긴급지원사업’을 진행하고 있습니다.</p>
+                        </div>
+                        <div>
+                            <i class="icon2"><img src="img/distributed.png" alt="공모배분사업"></i>
+                            <a href="#"><i class="plus"></i></a>
+                            <h6>공모배분사업</h6>
+                            <p class="web">종교, 이념, 인종, 지역 등에 차별 없이 국내/외 현장에서 가장 도움이 필요한 곳을 지원하기 위해 공모배분 사업을 통해 기부금을 배분합니다.</p>
+                        </div>
+                        <div>
+                            <i class="icon2"><img src="img/human-resources.png" alt="지정기탁사업"></i>
+                            <a href="#"><i class="plus"></i></a>
+                            <h6>지정기탁사업</h6>
+                            <p class="web">기업 또는 개인은 기부금 (현물 포함) 사용처를 지정하여 기탁할 수 있고 바보의나눔은 사업의 기획, 관리 및 평가를 담당합니다.</p>
+                        </div>
+                        <div>
+                            <i class="icon2"><img src="img/woman.png" alt="여성가장 지원사업"></i>
+                            <a href="#"><i class="plus"></i></a>
+                            <h6>여성가장 <br class="mob">지원사업</h6>
+                            <p class="web">사각지대의 여성가장들을 돕기 위해 ‘여성가장 긴급지원사업’을 진행하고 있습니다.</p>
+                        </div>
+                    </section>
+                    <!--<ul>
+                        <li>
+                            <div>
+                                <i class="icon2"><img src="img/distributed.png" alt="공모배분사업"></i>
+                                <a href="#"><i class="plus"></i></a>
+                                <h6>공모배분사업</h6>
+                                <p class="web">종교, 이념, 인종, 지역 등에 차별 없이 국내/외 현장에서 가장 도움이 필요한 곳을 지원하기 위해 공모배분 사업을 통해 기부금을 배분합니다.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <i class="icon2"><img src="img/human-resources.png" alt="지정기탁사업"></i>
+                                <a href="#"><i class="plus"></i></a>
+                                <h6>지정기탁사업</h6>
+                                <p class="web">기업 또는 개인은 기부금 (현물 포함) 사용처를 지정하여 기탁할 수 있고 바보의나눔은 사업의 기획, 관리 및 평가를 담당합니다.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <i class="icon2"><img src="img/woman.png" alt="여성가장 지원사업"></i>
+                                <a href="#"><i class="plus"></i></a>
+                                <h6>여성가장 <br class="mob">지원사업</h6>
+                                <p class="web">사각지대의 여성가장들을 돕기 위해 ‘여성가장 긴급지원사업’을 진행하고 있습니다.</p>
+                            </div>
+                        </li>
+                    </ul>-->
+                </div>
+            </div>
+            <!--box3-->
+            <div class="box4">
+                <div class="inner">
+                    <div class="left">
+                        <h1><span>기부이야기</span></h1>
+                        <p>감사한 마음이 모여 오늘도 따뜻한 기부이야기가 쌓여가고 있습니다.</p>
+                        <div class="list">
+                            <dl>
+                                <dt><img src="img/20210226_003.jpg" alt="기부이야기1"></dt>
+                                <dd>바보나눔터 293호점 혁신척척 <br class="m2">통증의학과를 소개합니다</dd>
+                            </dl>
+                            <dl>
+                                <dt><img src="img/20210217_karf_002.jpg" alt="기부이야기2"></dt>
+                                <dd>2016년부터 모은 나눔을 <br class="m2">기부한 카프성모병원 임직원</dd>
+                            </dl>
+                        </div>
+                        <div class="link">기부이야기 더 보기</div>
+                    </div>
+                    <div class="right">
+                        <h1><span>변화이야기</span></h1>
+                        <p>소중한 모두가 행복해지는 세상, 함께 만들어가고 있습니다.</p>
+                        <div class="list">
+                            <dl>
+                                <dt><img src="img/3.jpg" alt="변화이야기1"></dt>
+                                <dd>책으로 만나는 <br class="m2">미혼모, 미혼부의 이야기</dd>
+                            </dl>
+                            <dl>
+                                <dt><img src="img/8-1.png" alt="변화이야기2"></dt>
+                                <dd>꿈꾸는 아이들을 위한 <br class="m2">제과제빵 수업</dd>
+                            </dl>
+                        </div>
+                        <div class="link">기부이야기 더 보기</div>
+                    </div>
+                </div>
+            </div>
+            <!--box4-->
+            <div class="box5">
+                <div class="inner">
+                    <ul class="news">
+                        <li>
+                            <span class="category">새소식</span>
+                            <a href="#"><i class="plus"></i></a>
+                            <ul class="newslist">
+                                <li>
+                                    <div>2021<br>03.03</div>
+                                    <p><span>직원 채용 최종 합격자 공고</span></p>
+                                </li>
+                                <li>
+                                    <div>2021<br>02.23</div>
+                                    <p><span>모금홍보팀 직원 채용 1차 서류 합격자 공고</span></p>
+                                </li>
+                                <li>
+                                    <div>2021<br>01.28</div>
+                                    <p><span>모금홍보팀 직원 채용</span></p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="category">바보뉴스</span>
+                            <a href="#"><i class="plus"></i></a>
+                            <ul class="newslist">
+                                <li>
+                                    <div>2021<br>03.05</div>
+                                    <p><span>[뉴시스] 바보의나눔 재단, 전국 무료 급식소에 1억원 지원</span></p>
+                                </li>
+                                <li>
+                                    <div>2021<br>03.05</div>
+                                    <p><span>[조선일보] 저축에 토지보상금까지… 30억 기부한 노부부 사연</span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <div>2021<br>02.26</div>
+                                    <p><span>[가톨릭평화신문] 바보의나눔, 학대 피해 아동 돕기 나서</span></p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="category">지원공지</span>
+                            <a href="#"><i class="plus"></i></a>
+                            <ul class="newslist">
+                                <li>
+                                    <div>2021<br>02.25</div>
+                                    <p><span>[선정결과] 2021년 2월 여성가장 긴급지원 선정 안내</span></p>
+                                </li>
+                                <li>
+                                    <div>2021<br>01.22</div>
+                                    <p><span>[선정결과] 2021년 1월 여성가장 긴급지원 선정 안내</span></p>
+                                </li>
+                                <li>
+                                    <div>2021<br>01.07</div>
+                                    <p><span>[공고] 대덕전자와 함께하는 이주 배경 청소년 장학사업 신청안내</span></p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--contents-->
+        <footer id="footer">
+            <div class="inner">
+                <div class="footer2">
+                    <h2>사람이 사람답게 사는 세상,<br>함께 만들어주세요</h2>
+                    <p>기부전용계좌 (예금주 : 바보의나눔)<br>우리은행 1005-001-632223<br>하나은행 810-1004-1004-304</p>
+                    <div>정기기부</div>
+                    <div>일시기부</div>
+                </div>
+                <div class="footer1">
+                    <ul class="ftxt1">
+                        <li>이용약관</li>
+                        <li class="bold">개인정보처리방침</li>
+                        <li>이메일주소무단수집거부</li>
+                        <li>공익제보(국민신문고)</li>
+                    </ul>
+                    <p class="ftxt2">(재)바보의나눔<br>04537 서울시 중구 명동길 74, 5층(명동2가, 천주교서울대교구청)<br>대표 손희송사업자번호 201-82-06995<br>Tel. 기부문의 : 02)727-2506~8 / 지원문의 : 02)727-2503~5 (여성가장 2511)<br>Fax. 02)727-2509Email. babonanum@babo.or.kr
+                    </p>
+                    <p class="copyright">© Babonanum by 재단법인 바보의나눔. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+    <script src="js/slick.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var j220 = jQuery.noConflict();
+    </script>
+    <script type="text/javascript">
+        j220(document).on('ready', function() {
+
+            j220(".regular").slick({
+                dots: true,
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+
+                responsive: [ // 반응형 웹 구현 옵션
+                    {
+                        breakpoint: 1279, //화면 사이즈 1279px
+                        settings: {
+                            //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 768, //화면 사이즈 768px
+                        settings: {
+                            //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+            j220(".center").slick({
+                dots: true,
+                infinite: true,
+                centerMode: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                responsive: [ // 반응형 웹 구현 옵션
+                    {
+                        breakpoint: 1279, //화면 사이즈 960px
+                        settings: {
+                            //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 768, //화면 사이즈 768px
+                        settings: {
+                            //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+
+        });
+    </script>
+</body></html>
